@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Local Environment Variables
+.env
+
+# IDE / Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
