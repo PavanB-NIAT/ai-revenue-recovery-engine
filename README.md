@@ -157,6 +157,16 @@ Executes the comprehensive 13-scenario adversarial test suite:
 python -m unittest test_engine.py -v
 ```
 
+### Step 4: Run Version-B Portfolio Recovery Allocator Experiment
+Executes the finite-capacity allocation experiment (FIFO vs Portfolio EV Allocator):
+```powershell
+python run_portfolio_experiment.py
+```
+To run all test suites (Version-A adversarial tests + Version-B technical invariant tests):
+```powershell
+python -m unittest discover tests -v
+```
+
 ---
 
 ## 7. Current Prototype Limitations

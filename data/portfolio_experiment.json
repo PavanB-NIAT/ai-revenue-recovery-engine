@@ -1,0 +1,937 @@
+{
+  "experiment_name": "Controlled Finite-Capacity Allocation Experiment",
+  "primary_capacity_k": 20,
+  "total_transactions_evaluated": 50,
+  "gross_revenue_at_risk": 189661,
+  "eligible_opportunities_count": 40,
+  "exclusions_summary": {
+    "terminal_failures": 6,
+    "negative_ev": 4,
+    "no_viable_candidates": 0
+  },
+  "policy_comparison_primary_k": {
+    "fifo_policy": {
+      "policy_name": "FIFO_ARRIVAL_ORDER",
+      "capacity_limit": 20,
+      "opportunities_evaluated": 40,
+      "attempts_used": 20,
+      "successful_recoveries": 14,
+      "failed_executions": 6,
+      "starved_transactions": 20,
+      "recovered_gmv": 50139,
+      "operational_costs": 300.0,
+      "net_recovered": 49839.0,
+      "recovery_efficiency_pct": 70.0,
+      "execution_trace": [
+        {
+          "transaction_id": "txn_fail_1001",
+          "amount": 1499,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 1374.07,
+          "downstream_code": "SECONDARY_PG_200_OK",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1002",
+          "amount": 8500,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 2957.0,
+          "downstream_code": "ASYNC_LINK_EXPIRED_NO_ACTION",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1003",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1454.02,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1004",
+          "amount": 1499,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 1274.14,
+          "downstream_code": "MANDATE_EXECUTION_DECLINED",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1005",
+          "amount": 299,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 242.14,
+          "downstream_code": "MANDATE_DEBIT_CONFIRMED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 299
+        },
+        {
+          "transaction_id": "txn_fail_1006",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1291.61,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1007",
+          "amount": 4999,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 3834.23,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 4999
+        },
+        {
+          "transaction_id": "txn_fail_1009",
+          "amount": 4999,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 4329.13,
+          "downstream_code": "SECONDARY_PG_200_OK",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 4999
+        },
+        {
+          "transaction_id": "txn_fail_1010",
+          "amount": 499,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 51.86,
+          "downstream_code": "ASYNC_LINK_EXPIRED_NO_ACTION",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1011",
+          "amount": 999,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 964.02,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 999
+        },
+        {
+          "transaction_id": "txn_fail_1012",
+          "amount": 499,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 414.14,
+          "downstream_code": "MANDATE_EXECUTION_DECLINED",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1014",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1291.61,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1015",
+          "amount": 8500,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 6615.0,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 8500
+        },
+        {
+          "transaction_id": "txn_fail_1017",
+          "amount": 49,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 24.59,
+          "downstream_code": "SECONDARY_PG_200_OK",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 49
+        },
+        {
+          "transaction_id": "txn_fail_1018",
+          "amount": 8500,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 1682.0,
+          "downstream_code": "ASYNC_LINK_EXPIRED_NO_ACTION",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1019",
+          "amount": 15000,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 14685.0,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 15000
+        },
+        {
+          "transaction_id": "txn_fail_1020",
+          "amount": 999,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 844.14,
+          "downstream_code": "MANDATE_EXECUTION_DECLINED",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1021",
+          "amount": 8500,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 5255.0,
+          "downstream_code": "MANDATE_DEBIT_CONFIRMED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 8500
+        },
+        {
+          "transaction_id": "txn_fail_1022",
+          "amount": 299,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 229.1,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 299
+        },
+        {
+          "transaction_id": "txn_fail_1023",
+          "amount": 499,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 331.3,
+          "downstream_code": "ASYNC_LINK_PAID_SUCCESS",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 499
+        },
+        {
+          "transaction_id": "txn_fail_1025",
+          "amount": 499,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 469.02,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1027",
+          "amount": 2499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 2409.03,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1028",
+          "amount": 499,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 414.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1029",
+          "amount": 999,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 844.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1030",
+          "amount": 2499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 2236.59,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1031",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1154.22,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1033",
+          "amount": 299,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 243.12,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1035",
+          "amount": 4999,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 4834.03,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1036",
+          "amount": 15000,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 9285.0,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1037",
+          "amount": 15000,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 9285.0,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1038",
+          "amount": 8500,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 7522.5,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1041",
+          "amount": 2499,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 2279.08,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1042",
+          "amount": 499,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 106.75,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1043",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1454.02,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1044",
+          "amount": 1499,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 1274.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1045",
+          "amount": 299,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 242.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1046",
+          "amount": 15000,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 13307.5,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1047",
+          "amount": 299,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 218.22,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1049",
+          "amount": 499,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 414.13,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1050",
+          "amount": 1499,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 371.74,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        }
+      ]
+    },
+    "portfolio_policy": {
+      "policy_name": "PORTFOLIO_EV_ALLOCATOR",
+      "capacity_limit": 20,
+      "opportunities_evaluated": 40,
+      "attempts_used": 20,
+      "successful_recoveries": 17,
+      "failed_executions": 3,
+      "starved_transactions": 20,
+      "recovered_gmv": 100489,
+      "operational_costs": 300.0,
+      "net_recovered": 100189.0,
+      "recovery_efficiency_pct": 85.0,
+      "execution_trace": [
+        {
+          "transaction_id": "txn_fail_1019",
+          "amount": 15000,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 14685.0,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 15000
+        },
+        {
+          "transaction_id": "txn_fail_1046",
+          "amount": 15000,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 13307.5,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 15000
+        },
+        {
+          "transaction_id": "txn_fail_1036",
+          "amount": 15000,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 9285.0,
+          "downstream_code": "MANDATE_EXECUTION_DECLINED",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1037",
+          "amount": 15000,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 9285.0,
+          "downstream_code": "MANDATE_DEBIT_CONFIRMED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 15000
+        },
+        {
+          "transaction_id": "txn_fail_1038",
+          "amount": 8500,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 7522.5,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 8500
+        },
+        {
+          "transaction_id": "txn_fail_1015",
+          "amount": 8500,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 6615.0,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 8500
+        },
+        {
+          "transaction_id": "txn_fail_1021",
+          "amount": 8500,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 5255.0,
+          "downstream_code": "MANDATE_DEBIT_CONFIRMED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 8500
+        },
+        {
+          "transaction_id": "txn_fail_1035",
+          "amount": 4999,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 4834.03,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 4999
+        },
+        {
+          "transaction_id": "txn_fail_1009",
+          "amount": 4999,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 4329.13,
+          "downstream_code": "SECONDARY_PG_200_OK",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 4999
+        },
+        {
+          "transaction_id": "txn_fail_1007",
+          "amount": 4999,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 3834.23,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 4999
+        },
+        {
+          "transaction_id": "txn_fail_1002",
+          "amount": 8500,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 2957.0,
+          "downstream_code": "ASYNC_LINK_EXPIRED_NO_ACTION",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1027",
+          "amount": 2499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 2409.03,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 2499
+        },
+        {
+          "transaction_id": "txn_fail_1041",
+          "amount": 2499,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 2279.08,
+          "downstream_code": "SECONDARY_PG_200_OK",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 2499
+        },
+        {
+          "transaction_id": "txn_fail_1030",
+          "amount": 2499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 2236.59,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 2499
+        },
+        {
+          "transaction_id": "txn_fail_1018",
+          "amount": 8500,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 1682.0,
+          "downstream_code": "ASYNC_LINK_EXPIRED_NO_ACTION",
+          "status": "EXECUTION_FAILED",
+          "attempts": 1,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1003",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1454.02,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1043",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1454.02,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1001",
+          "amount": 1499,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 1374.07,
+          "downstream_code": "SECONDARY_PG_200_OK",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1006",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1291.61,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1014",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1291.61,
+          "downstream_code": "UPI_INTENT_CAPTURED",
+          "status": "RECOVERED",
+          "attempts": 1,
+          "success": true,
+          "revenue_recovered": 1499
+        },
+        {
+          "transaction_id": "txn_fail_1004",
+          "amount": 1499,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 1274.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1044",
+          "amount": 1499,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 1274.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1031",
+          "amount": 1499,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 1154.22,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1011",
+          "amount": 999,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 964.02,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1020",
+          "amount": 999,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 844.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1029",
+          "amount": 999,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 844.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1025",
+          "amount": 499,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 469.02,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1012",
+          "amount": 499,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 414.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1028",
+          "amount": 499,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 414.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1049",
+          "amount": 499,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 414.13,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1050",
+          "amount": 1499,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 371.74,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1023",
+          "amount": 499,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 331.3,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1033",
+          "amount": 299,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 243.12,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1005",
+          "amount": 299,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 242.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1045",
+          "amount": 299,
+          "action": "SCHEDULE_MANDATE_BATCH",
+          "expected_value": 242.14,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1022",
+          "amount": 299,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 229.1,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1047",
+          "amount": 299,
+          "action": "TRIGGER_CROSS_RAIL_UPI",
+          "expected_value": 218.22,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1042",
+          "amount": 499,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 106.75,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1010",
+          "amount": 499,
+          "action": "DISPATCH_ASYNC_RECOVERY_LINK",
+          "expected_value": 51.86,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        },
+        {
+          "transaction_id": "txn_fail_1017",
+          "amount": 49,
+          "action": "SWITCH_SECONDARY_PG",
+          "expected_value": 24.59,
+          "status": "STARVED_CAPACITY_EXHAUSTED",
+          "attempts": 0,
+          "success": false,
+          "revenue_recovered": 0
+        }
+      ]
+    },
+    "metrics_delta": {
+      "gmv_recovered_delta": 50350,
+      "net_financial_delta": 50350.0,
+      "percentage_gain": 100.4,
+      "empirical_classification": "PORTFOLIO_OUTPERFORMS_FIFO"
+    }
+  },
+  "capacity_sensitivity": {
+    "K_10": {
+      "capacity_k": 10,
+      "fifo_recovered": 15793,
+      "portfolio_recovered": 85497,
+      "delta_gmv": 69704,
+      "pct_gain": 441.4,
+      "fifo_successes": 7,
+      "portfolio_successes": 9
+    },
+    "K_20": {
+      "capacity_k": 20,
+      "fifo_recovered": 50139,
+      "portfolio_recovered": 100489,
+      "delta_gmv": 50350,
+      "pct_gain": 100.4,
+      "fifo_successes": 14,
+      "portfolio_successes": 17
+    },
+    "K_30": {
+      "capacity_k": 30,
+      "fifo_recovered": 76933,
+      "portfolio_recovered": 103485,
+      "delta_gmv": 26552,
+      "pct_gain": 34.5,
+      "fifo_successes": 21,
+      "portfolio_successes": 21
+    },
+    "K_43": {
+      "capacity_k": 43,
+      "fifo_recovered": 105528,
+      "portfolio_recovered": 105528,
+      "delta_gmv": 0,
+      "pct_gain": 0.0,
+      "fifo_successes": 28,
+      "portfolio_successes": 28
+    }
+  },
+  "k43_diagnostic_comparison": {
+    "version_a_canonical_gmv": 130224.0,
+    "version_a_lifecycle": "Multi-hop dynamic state reassessment (up to 2 hops)",
+    "version_b_k43_gmv": 105528,
+    "version_b_scope": "Single initial opportunity allocation under capacity K",
+    "numerical_delta": -24696.0,
+    "scope_explanation": "Version-A executes dynamic multi-hop state reassessment after failed Hop 1 attempts. Version-B intentionally evaluates allocation of initial recovery opportunities under finite capacity. At K=43, Version-B represents the single-hop frontier."
+  },
+  "methodology_disclaimer": "Measured result -- not a guaranteed improvement. Synthetic simulation experiment."
+}

@@ -21,6 +21,7 @@ FRONTEND_DIR = BASE_DIR / "frontend"
 AUDIT_PATH = DATA_DIR / "audit_trail.json"
 DEEP_AUDIT_PATH = DATA_DIR / "deep_audit_trail.json"
 FAILED_BATCH_PATH = DATA_DIR / "failed_batch.json"
+PORTFOLIO_EXPERIMENT_PATH = DATA_DIR / "portfolio_experiment.json"
 
 class RecoveryEngineRequestHandler(SimpleHTTPRequestHandler):
     """Minimal JSON API and static file handler for the Recovery Engine."""
@@ -120,6 +121,24 @@ class RecoveryEngineRequestHandler(SimpleHTTPRequestHandler):
                 self._send_json({"error": "Data files missing. Run generate_data.py and agent.py first."}, status=HTTPStatus.NOT_FOUND)
             return
 
+        if self.path == "/api/portfolio-experiment":
+            if PORTFOLIO_EXPERIMENT_PATH.exists():
+                with open(PORTFOLIO_EXPERIMENT_PATH, "r", encoding="utf-8") as f:
+                    self._send_json(json.load(f))
+            elif FAILED_BATCH_PATH.exists():
+                from core.portfolio_allocator import PortfolioRecoveryAllocator
+                with open(FAILED_BATCH_PATH, "r", encoding="utf-8") as f:
+                    batch = json.load(f)
+                allocator = PortfolioRecoveryAllocator(base_seed=1337)
+                res = allocator.run_controlled_experiment(batch, capacity_limit=20)
+                PORTFOLIO_EXPERIMENT_PATH.parent.mkdir(parents=True, exist_ok=True)
+                with open(PORTFOLIO_EXPERIMENT_PATH, "w", encoding="utf-8") as f:
+                    json.dump(res, f, indent=2)
+                self._send_json(res)
+            else:
+                self._send_json({"error": "Dataset not found. Run generate_data.py and run_portfolio_experiment.py first."}, status=HTTPStatus.NOT_FOUND)
+            return
+
         # Fallback to serving static files from frontend/
         index_path = FRONTEND_DIR / "index.html"
         if not index_path.exists() and (self.path == "/" or self.path == "/index.html"):
@@ -129,7 +148,8 @@ class RecoveryEngineRequestHandler(SimpleHTTPRequestHandler):
                     "/api/health",
                     "/api/benchmark",
                     "/api/audit",
-                    "/api/deep-audit"
+                    "/api/deep-audit",
+                    "/api/portfolio-experiment"
                 ],
                 "note": "Frontend UI will be mounted in frontend/ in the upcoming milestone."
             })
