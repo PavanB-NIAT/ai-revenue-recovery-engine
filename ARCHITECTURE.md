@@ -209,7 +209,7 @@ To scientifically measure recovery efficacy without bias, the test suite evaluat
 * **Economic EV Suppression (`txn_fail_1034` | INR 49.00)**:
   - Error: `GATEWAY_TIMEOUT` on low-ticket order (INR 49.00) with cold session intent (0.31).
   - Guardrail: Mathematical evaluation yields $EV = \text{INR } -12.61 \le 0$.
-  - Status: `SUPPRESSED_NEGATIVE_EV` (0 attempts, merchant protected from fee loss).
+  - Status: `SUPPRESSED_NEGATIVE_EV` (0 attempts, suppressed because estimated expected value is non-positive).
 
 ---
 

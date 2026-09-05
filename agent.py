@@ -559,7 +559,7 @@ def run_full_simulation():
     print("  Failure     : GATEWAY_TIMEOUT (Abandoned checkout, degraded intent score: 0.31)")
     print("  Candidate   : DISPATCH_ASYNC_RECOVERY_LINK (Estimated conversion: 11%)")
     print("  Guardrail   : NEGATIVE_EXPECTED_VALUE (EV: INR -12.61 <= 0 | Attempt Cost: INR 18.00)")
-    print("  Final Status: SUPPRESSED_NEGATIVE_EV (0 attempts, merchant protected from fee loss)")
+    print("  Final Status: SUPPRESSED_NEGATIVE_EV (0 attempts, suppressed because estimated expected value is non-positive)")
     print("=" * 80)
     print(f"Full Lifecycle Audit Trail Logged : {AUDIT_TRAIL_PATH}")
     print(f"Deep Reassessment Trace Logged    : {DEEP_AUDIT_TRAIL_PATH}\n")

@@ -1,4 +1,5 @@
 import json
+import random
 import unittest
 import sys
 from pathlib import Path
@@ -366,6 +367,9 @@ class TestContextualRecoveryEngineAdversarial(unittest.TestCase):
         with open("data/failed_batch.json", "r") as f:
             batch = json.load(f)
             
+        # Explicitly reset PRNG seed to isolate benchmark evaluation from
+        # random numbers consumed by preceding tests and maintain parity with canonical agent.py.
+        random.seed(1337)
         base_res = run_baseline_evaluation(batch)
         self.assertGreaterEqual(base_res["attempts"], 80)
         self.assertGreater(base_res["penalties"], 0, "Baseline failed to incur penalties on dead rails!")
@@ -377,7 +381,7 @@ class TestContextualRecoveryEngineAdversarial(unittest.TestCase):
                 contextual_recoveries += 1
                 
         self.assertGreater(contextual_recoveries, base_res["recoveries"])
-        print(f"\n[PASS] Batch parity verified: Baseline recoveries: {base_res['recoveries']} vs Contextual: {contextual_recoveries}")
+        print(f"\n[PASS] Shared-batch benchmark verified: Baseline recoveries: {base_res['recoveries']} vs Contextual: {contextual_recoveries}")
 
 
 if __name__ == "__main__":
