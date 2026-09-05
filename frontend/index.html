@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recovery Control Center | Autonomous Payment Recovery Engine</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Global Notice Banner -->
+    <div class="notice-banner">
+      <div class="notice-text">
+        <strong>SIMULATION BENCHMARK:</strong> Evaluated on a 50-transaction synthetic testbed. This dashboard models autonomous recovery algorithms and is not connected to live Razorpay production rails.
+      </div>
+      <span class="badge-sim-env">Controlled Benchmark</span>
+    </div>
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="brand-badge-row">
+          <h1 class="brand-title">Recovery Control Center</h1>
+          <span class="badge-sim-env">Simulation Environment</span>
+        </div>
+        <p class="brand-subtitle">Context-aware autonomous payment recovery under bounded operational capacity</p>
+      </div>
+      <div class="header-telemetry">
+        <div class="telemetry-chip">
+          <span class="telemetry-label">Engine Baseline</span>
+          <span class="telemetry-val">Version A (Frozen)</span>
+        </div>
+        <div class="telemetry-chip">
+          <span class="telemetry-label">Allocator Layer</span>
+          <span class="telemetry-val">Version B (Active)</span>
+        </div>
+        <div class="telemetry-chip">
+          <span class="telemetry-label">Dataset Cohort</span>
+          <span class="telemetry-val">50 Scenarios</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Error State Overlay -->
+    <div id="errorOverlay" class="error-state-overlay">
+      <h3 style="color: var(--color-danger); font-size: 16px;">Backend Unavailable</h3>
+      <p style="color: var(--text-secondary); font-size: 13px;">Unable to fetch telemetry from API. Ensure <code>python server.py</code> is running on port 8000.</p>
+      <button class="retry-btn" onclick="initDashboard()">Retry Connection</button>
+    </div>
+
+    <!-- SECTION 1: Executive Metrics -->
+    <section class="dashboard-section" id="executiveMetricsSection">
+      <div class="section-header">
+        <h2 class="section-title">Executive Telemetry Overview</h2>
+        <span class="section-caption">Controlled simulation benchmark &bull; Synthetic dataset</span>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-title">Revenue at Risk</span>
+          <span class="metric-value" id="metricRisk">₹189,661.00</span>
+          <span class="metric-delta neutral">50 Failed Transactions</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Revenue Recovered</span>
+          <span class="metric-value" id="metricRecovered" style="color: var(--color-success);">₹130,224.00</span>
+          <span class="metric-delta positive">+13.7x over Baseline</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Recovery Rate</span>
+          <span class="metric-value" id="metricRate">68.66%</span>
+          <span class="metric-delta positive">Baseline: 5.01%</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Recovery Attempts</span>
+          <span class="metric-value" id="metricAttempts">43</span>
+          <span class="metric-delta positive">56% Fewer Attempts</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Successful Recoveries</span>
+          <span class="metric-value" id="metricSuccesses">34</span>
+          <span class="metric-delta positive">vs 5 Baseline</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-title">Recovery Efficiency</span>
+          <span class="metric-value" id="metricEfficiency">79.1%</span>
+          <span class="metric-delta highlight">4 in 5 Attempts Settle</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Baseline vs Contextual Comparison -->
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">Baseline vs Contextual Recovery Engine</h2>
+        <span class="section-caption">Controlled Synthetic Benchmark &bull; Same 50-Transaction Dataset</span>
+      </div>
+      <div class="comparison-grid">
+        <!-- Baseline Card -->
+        <div class="comparison-card">
+          <div class="comparison-header">
+            <span class="comparison-label">Baseline (Naive Blind Retries)</span>
+            <span class="pill failed">Legacy Strategy</span>
+          </div>
+          <table class="comparison-table">
+            <tbody>
+              <tr>
+                <td>Gross Revenue Recovered</td>
+                <td id="baseGmv">₹9,495.00</td>
+              </tr>
+              <tr>
+                <td>Recovery Success Rate</td>
+                <td id="baseRate">5.01%</td>
+              </tr>
+              <tr>
+                <td>Recovery Attempts Dispatched</td>
+                <td id="baseAttempts">99</td>
+              </tr>
+              <tr>
+                <td>Successful Recoveries</td>
+                <td id="baseSuccesses">5</td>
+              </tr>
+              <tr>
+                <td>Failed Executions</td>
+                <td id="baseFails">94</td>
+              </tr>
+              <tr>
+                <td>Recovery Efficiency</td>
+                <td id="baseEff">5.1%</td>
+              </tr>
+              <tr>
+                <td>Simulated Bank Bounce Penalties</td>
+                <td class="loss-val" id="basePenalties">₹11,500.00</td>
+              </tr>
+              <tr>
+                <td>Net Financial Recovery</td>
+                <td class="loss-val" id="baseNet">-₹3,490.00 (Net Loss)</td>
+              </tr>
+              <tr>
+                <td>Protective Circuit Breaks</td>
+                <td>0 (Blind Loop)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Contextual Card -->
+        <div class="comparison-card contextual">
+          <div class="comparison-header">
+            <span class="comparison-label">Contextual Recovery Engine</span>
+            <span class="pill recovered">Autonomous Multi-Rail</span>
+          </div>
+          <table class="comparison-table">
+            <tbody>
+              <tr>
+                <td>Gross Revenue Recovered</td>
+                <td class="highlight-val" id="ctxGmv">₹130,224.00</td>
+              </tr>
+              <tr>
+                <td>Recovery Success Rate</td>
+                <td class="highlight-val" id="ctxRate">68.66%</td>
+              </tr>
+              <tr>
+                <td>Recovery Attempts Dispatched</td>
+                <td id="ctxAttempts">43</td>
+              </tr>
+              <tr>
+                <td>Successful Recoveries</td>
+                <td class="highlight-val" id="ctxSuccesses">34</td>
+              </tr>
+              <tr>
+                <td>Failed Executions</td>
+                <td id="ctxFails">9</td>
+              </tr>
+              <tr>
+                <td>Recovery Efficiency</td>
+                <td class="highlight-val" id="ctxEff">79.1%</td>
+              </tr>
+              <tr>
+                <td>Simulated Bank Bounce Penalties</td>
+                <td style="color: var(--color-success); font-weight: 700;">₹0.00 (Protected)</td>
+              </tr>
+              <tr>
+                <td>Net Financial Recovery</td>
+                <td class="highlight-val" id="ctxNet">+₹129,579.00</td>
+              </tr>
+              <tr>
+                <td>Protective Circuit Breaks</td>
+                <td style="color: var(--accent-primary); font-weight: 700;">10 Protected Stops</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Version B Portfolio Recovery Allocation -->
+    <section class="dashboard-section" id="portfolioSection">
+      <div class="section-header">
+        <h2 class="section-title">Portfolio Recovery Allocation (Version B)</h2>
+        <span class="section-caption">Supervisory Economic Layer &bull; Order-Independent Execution</span>
+      </div>
+
+      <div class="portfolio-hero">
+        <div class="portfolio-hero-headline">
+          <div class="headline-quote">
+            "When recovery capacity is limited, the system doesn't just decide how to recover a payment — it decides which recovery opportunity deserves the next unit of recovery capacity."
+          </div>
+          <p class="headline-explainer">
+            Recovery capacity is finite (SMS/WhatsApp messaging limits, bank rate limits, merchant budget). 
+            The allocator prioritizes recovery opportunities by Expected Economic Value (EV) descending instead of processing eligible payments in natural arrival order (FIFO).
+          </p>
+        </div>
+
+        <!-- Primary K=20 Experiment -->
+        <div class="portfolio-experiment-box">
+          <!-- Policy A: FIFO -->
+          <div class="policy-card">
+            <div class="comparison-header">
+              <span class="policy-badge fifo">Policy A: Arrival Order (FIFO)</span>
+              <span style="font-size: 11px; color: var(--text-muted);">Capacity K = 20</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Attempt Capacity</span>
+              <span class="val">20 Attempts</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Attempts Dispatched</span>
+              <span class="val">20</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Successful Recoveries</span>
+              <span class="val" id="fifoSuccess">14</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Failed Executions</span>
+              <span class="val">6</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Starved Opportunities</span>
+              <span class="val" style="color: var(--color-warning);">20</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Recovered Gross GMV</span>
+              <span class="val" id="fifoGmv">₹50,139.00</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Operational Routing Costs</span>
+              <span class="val">₹300.00</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Net Financial Recovery</span>
+              <span class="val" id="fifoNet">₹49,839.00</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Recovery Efficiency</span>
+              <span class="val" id="fifoEff">70.0%</span>
+            </div>
+          </div>
+
+          <!-- Policy B: Portfolio EV -->
+          <div class="policy-card portfolio">
+            <div class="comparison-header">
+              <span class="policy-badge port">Policy B: Portfolio EV Allocator</span>
+              <span style="font-size: 11px; color: var(--color-cyan); font-weight: 600;">Capacity K = 20</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Attempt Capacity</span>
+              <span class="val">20 Attempts</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Attempts Dispatched</span>
+              <span class="val">20</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Successful Recoveries</span>
+              <span class="val" id="portSuccess" style="color: var(--color-success);">17 (+3)</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Failed Executions</span>
+              <span class="val">3 (-3)</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Starved Opportunities</span>
+              <span class="val" style="color: var(--color-warning);">20</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Recovered Gross GMV</span>
+              <span class="val" id="portGmv" style="color: var(--color-cyan); font-size: 15px;">₹100,489.00</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Operational Routing Costs</span>
+              <span class="val">₹300.00</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Net Financial Recovery</span>
+              <span class="val" id="portNet" style="color: var(--color-success);">₹100,189.00</span>
+            </div>
+            <div class="policy-metric-row">
+              <span>Recovery Efficiency</span>
+              <span class="val" id="portEff" style="color: var(--color-cyan);">85.0% (+15.0%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delta Banner -->
+        <div class="portfolio-delta-banner">
+          <div class="delta-stat">
+            Measured Allocation Delta (K = 20): <strong id="portDeltaGmv">+₹50,350.00 (+100.4% GMV)</strong>
+          </div>
+          <div class="delta-disclaimer">
+            * Notice: Measured result — not a guaranteed improvement. Synthetic simulation experiment.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Capacity Sensitivity Analysis -->
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">Capacity Sensitivity Analysis (K &in; {10, 20, 30, 43})</h2>
+        <span class="section-caption">Impact of Allocation Policy across Different Operational Quota Regimes</span>
+      </div>
+
+      <div class="sensitivity-card">
+        <div class="sensitivity-chart-container" id="sensitivityBarsContainer">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <div class="k43-explanation-box">
+          <strong>K = 43 Diagnostic Boundary (0.0% measured difference):</strong>
+          Under unconstrained attempt capacity (K = 43), capacity exceeds the 40 eligible initial opportunities. Both FIFO and Portfolio execute all 40 opportunities, recovering the identical single-hop GMV of <strong>₹105,528.00</strong>. The difference between this figure and Version-A's canonical <strong>₹130,224.00</strong> represents revenue captured via dynamic multi-hop reassessment (Hop 2 recoveries) in Version A.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Curated Exemplar Scenarios (1-Click Demo Bar) -->
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">Curated Technical Exemplars (1-Click Demo)</h2>
+        <span class="section-caption">Click any scenario to instantly inspect its decision path and state trace</span>
+      </div>
+      <div class="exemplars-bar">
+        <button class="exemplar-btn active" data-tx="txn_fail_1001" onclick="selectTransaction('txn_fail_1001')">
+          <span class="badge-id">Exemplar 1 &bull; txn_fail_1001</span>
+          <span class="title">Active Session PG Timeout</span>
+          <span class="sub">SWITCH_SECONDARY_PG &rarr; Recovered</span>
+        </button>
+        <button class="exemplar-btn" data-tx="txn_fail_1002" onclick="selectTransaction('txn_fail_1002')">
+          <span class="badge-id">Exemplar 2 &bull; txn_fail_1002</span>
+          <span class="title">Abandoned Session Timeout</span>
+          <span class="sub">ASYNC_LINK &rarr; Recovered</span>
+        </button>
+        <button class="exemplar-btn" data-tx="txn_fail_1007" onclick="selectTransaction('txn_fail_1007')">
+          <span class="badge-id">Exemplar 3 &bull; txn_fail_1007</span>
+          <span class="title">3DS Drop &rarr; Multi-Hop</span>
+          <span class="sub">Auth Link &rarr; Reassess &rarr; Stopped</span>
+        </button>
+        <button class="exemplar-btn" data-tx="txn_fail_1008" onclick="selectTransaction('txn_fail_1008')">
+          <span class="badge-id">Exemplar 4 &bull; txn_fail_1008</span>
+          <span class="title">Terminal Stolen Card</span>
+          <span class="sub">Circuit Breaker &rarr; 0 Attempts</span>
+        </button>
+        <button class="exemplar-btn" data-tx="txn_fail_1034" onclick="selectTransaction('txn_fail_1034')">
+          <span class="badge-id">Exemplar 5 &bull; txn_fail_1034</span>
+          <span class="title">Negative EV Micro-Ticket</span>
+          <span class="sub">EV &le; 0 Guardrail &rarr; Suppressed</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Lifecycle Visualizer Stepper -->
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">Autonomous Recovery Lifecycle Path</h2>
+        <span class="section-caption" id="activeTxLifecycleCaption">Active Pipeline Traversal for selected transaction</span>
+      </div>
+      <div class="lifecycle-stepper-card">
+        <div class="stepper-track" id="stepperTrack">
+          <!-- Dynamically illuminated based on selected transaction -->
+          <div class="stepper-node completed" data-step="1">
+            <div class="node-icon">1</div>
+            <span class="node-title">Failure</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node completed" data-step="2">
+            <div class="node-icon">2</div>
+            <span class="node-title">Context</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node completed" data-step="3">
+            <div class="node-icon">3</div>
+            <span class="node-title">Candidates</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node completed" data-step="4">
+            <div class="node-icon">4</div>
+            <span class="node-title">Rank</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node completed" data-step="5">
+            <div class="node-icon">5</div>
+            <span class="node-title">Allocate</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node completed" data-step="6">
+            <div class="node-icon">6</div>
+            <span class="node-title">Guardrail</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node active" data-step="7">
+            <div class="node-icon">7</div>
+            <span class="node-title">Execute</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node" data-step="8">
+            <div class="node-icon">8</div>
+            <span class="node-title">Outcome</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node" data-step="9">
+            <div class="node-icon">9</div>
+            <span class="node-title">Reassess</span>
+          </div>
+          <div class="stepper-connector"></div>
+          <div class="stepper-node" data-step="10">
+            <div class="node-icon">10</div>
+            <span class="node-title">Terminate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: Transaction Decision Explorer & Inspector (Split View) -->
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">Transaction Decision Explorer &amp; "Why?" Inspector</h2>
+        <span class="section-caption">Explore all 50 cohort transactions &bull; Deep dive into algorithmic reasoning</span>
+      </div>
+
+      <div class="explorer-split">
+        <!-- Left: Transaction Table -->
+        <div class="explorer-panel">
+          <div class="panel-header">
+            <span class="panel-title">Cohort Transactions (<span id="filteredTxCount">50</span>)</span>
+            <div class="filter-row">
+              <input type="text" id="txSearchInput" class="search-input" placeholder="Search Tx ID, error, bank...">
+              <select id="categoryFilter" class="filter-select">
+                <option value="ALL">All Categories</option>
+                <option value="INFRASTRUCTURE_FAILURE">Infrastructure</option>
+                <option value="BANK_DOWNTIME">Bank Downtime</option>
+                <option value="USER_FRICTION">User Friction</option>
+                <option value="LIQUIDITY_LIMIT">Liquidity Limit</option>
+                <option value="TERMINAL_FAILURE">Terminal Security</option>
+              </select>
+              <select id="statusFilter" class="filter-select">
+                <option value="ALL">All Outcomes</option>
+                <option value="RECOVERED">Recovered</option>
+                <option value="SUPPRESSED">Suppressed / Stopped</option>
+                <option value="FAILED">Execution Failed</option>
+                <option value="STARVED">Starved (K=20)</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table class="tx-table">
+              <thead>
+                <tr>
+                  <th>Transaction</th>
+                  <th>Amount</th>
+                  <th>Rail</th>
+                  <th>Failure Code</th>
+                  <th>Posture</th>
+                  <th>Action</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="txTableBody">
+                <!-- Populated dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: Inspector Panel -->
+        <div class="inspector-panel" id="inspectorPanel">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: Guardrails & Safety Invariants -->
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">Engine Safety Guardrails &amp; Invariants</h2>
+        <span class="section-caption">Automated Circuit Breakers Protecting Merchant Margin and Customer Experience</span>
+      </div>
+      <div class="guardrail-cards-grid">
+        <div class="guardrail-item">
+          <div class="guardrail-name" style="color: var(--color-danger);">
+            <span>&bull;</span> Terminal Security Circuit Breaker
+          </div>
+          <p class="guardrail-desc">
+            Immediately blocks automated recovery for terminal declines (stolen cards, fraud flags, account frozen). Incurs 0 network attempts and zero financial liability.
+          </p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-name" style="color: var(--color-warning);">
+            <span>&bull;</span> Dynamic Economic EV Bound
+          </div>
+          <p class="guardrail-desc">
+            Evaluates EV = Amount × Confidence − Cost − Risk. Suppresses micro-tickets where message/routing fees exceed expected return.
+          </p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-name" style="color: var(--accent-primary);">
+            <span>&bull;</span> Bounded Multi-Hop Bound (MAX = 2)
+          </div>
+          <p class="guardrail-desc">
+            Enforces a hard ceiling of 2 recovery attempts per transaction lifecycle. Completely eliminates infinite retry loops and network storms.
+          </p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-name" style="color: var(--color-cyan);">
+            <span>&bull;</span> Duplicate Strategy Prevention
+          </div>
+          <p class="guardrail-desc">
+            If a strategy fails in Hop 1 (e.g. 3DS auth drop), that exact strategy is strictly excluded from candidate generation during Hop 2 state reassessment.
+          </p>
+        </div>
+        <div class="guardrail-item">
+          <div class="guardrail-name" style="color: var(--color-success);">
+            <span>&bull;</span> Degraded Rail Circuit Breaker
+          </div>
+          <p class="guardrail-desc">
+            Monitors real-time bank CBS health and secondary PG health. Blocks retry attempts against offline infrastructure, preventing bank bounce penalties.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding-top: 24px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; color: var(--text-muted); font-size: 12px; flex-wrap: wrap; gap: 10px;">
+      <span>Autonomous Payment Recovery Engine &bull; Version A &amp; Version B</span>
+      <span>Controlled Simulation &bull; Synthetic Dataset &bull; Zero Live PG Execution</span>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
