@@ -1,0 +1,11 @@
+# Contextual Intent & Cross-Rail Autonomous Payment Recovery Engine
+# -----------------------------------------------------------------------------
+# Core Recovery Engine, Simulation Kernel, CLI Demo, and Minimal API Server
+# are implemented using the Python 3.10+ Standard Library.
+#
+# Zero third-party pip dependencies are required to run the simulation,
+# execute the adversarial test suite, or start the local API foundation.
+#
+# Standard Library Modules Utilized:
+# - json, random, os, sys, datetime, pathlib, unittest, http.server, urllib
+# -----------------------------------------------------------------------------

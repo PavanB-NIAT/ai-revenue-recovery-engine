@@ -1,6 +1,8 @@
 # Contextual Intent & Cross-Rail Autonomous Payment Recovery Engine
 
 > **Prototype Submission:** Autonomous payment failure recovery engine combining root-cause semantics, multi-rail orchestration, customer session posture, and dynamic economic guardrails.
+> 
+> **Architecture & Technical Walkthrough:** See [ARCHITECTURE.md](file:///c:/Users/pavan/payment-recovery-engine/ARCHITECTURE.md) for full state diagrams, mathematical formulas, and lifecycle specifications.
 
 ---
 
@@ -122,7 +124,13 @@ Both engines evaluate the **identical 50-transaction synthetic dataset** using t
 
 ---
 
-## 6. How to Run the Project
+## 6. How to Run the Project (Quickstart)
+
+```powershell
+python generate_data.py
+python agent.py
+python -m unittest test_engine.py -v
+```
 
 ### Prerequisites
 * Python 3.10+ (Standard library only; zero external pip dependencies required for core simulation).
